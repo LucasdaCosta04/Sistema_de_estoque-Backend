@@ -16,6 +16,7 @@ public class ProdutoService {
         this.repository = repository;
     }
 
+    // Métodos CRUD originais
     public Produto adicionar(Produto p) {
         validarProduto(p);
         return repository.save(p);
@@ -28,7 +29,7 @@ public class ProdutoService {
     public Produto editar(Long id, Produto p) {
         Produto existente = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado"));
-        // aplicar validação no objeto que será salvo
+
         existente.setNome(p.getNome());
         existente.setPrecoUnitario(p.getPrecoUnitario());
         existente.setUnidade(p.getUnidade());
@@ -36,6 +37,7 @@ public class ProdutoService {
         existente.setQuantidadeMinima(p.getQuantidadeMinima());
         existente.setQuantidadeMaxima(p.getQuantidadeMaxima());
         existente.setCategoria(p.getCategoria());
+
         validarProduto(existente);
         return repository.save(existente);
     }
@@ -59,11 +61,34 @@ public class ProdutoService {
         repository.saveAll(produtos);
     }
 
+    // Métodos adicionais para relatórios e movimentações
+    public Produto buscarPorId(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado com ID: " + id));
+    }
+
+    public List<Produto> listarOrdenadoPorNome() {
+        return repository.findByOrderByNomeAsc();
+    }
+
+    public List<Produto> listarProdutosAbaixoDoMinimo() {
+        return repository.findProdutosAbaixoDoMinimo();
+    }
+
+    public List<Object[]> contarProdutosPorCategoria() {
+        return repository.countProdutosPorCategoria();
+    }
+
     private void validarProduto(Produto p) {
-        if (p.getNome() == null || p.getNome().isBlank()) throw new IllegalArgumentException("Nome obrigatório");
-        if (p.getPrecoUnitario() == null || p.getPrecoUnitario() < 0) throw new IllegalArgumentException("Preço inválido");
-        if (p.getQuantidadeEstoque() == null || p.getQuantidadeEstoque() < 0) throw new IllegalArgumentException("Estoque inválido");
-        if (p.getQuantidadeMinima() == null || p.getQuantidadeMaxima() == null) throw new IllegalArgumentException("Quantidades mín/max obrigatórias");
-        if (p.getQuantidadeMinima() > p.getQuantidadeMaxima()) throw new IllegalArgumentException("Quantidade mínima > máxima");
+        if (p.getNome() == null || p.getNome().isBlank())
+            throw new IllegalArgumentException("Nome obrigatório");
+        if (p.getPrecoUnitario() == null || p.getPrecoUnitario() < 0)
+            throw new IllegalArgumentException("Preço inválido");
+        if (p.getQuantidadeEstoque() == null || p.getQuantidadeEstoque() < 0)
+            throw new IllegalArgumentException("Estoque inválido");
+        if (p.getQuantidadeMinima() == null || p.getQuantidadeMaxima() == null)
+            throw new IllegalArgumentException("Quantidades mín/max obrigatórias");
+        if (p.getQuantidadeMinima() > p.getQuantidadeMaxima())
+            throw new IllegalArgumentException("Quantidade mínima > máxima");
     }
 }

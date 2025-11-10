@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/produtos")
-@CrossOrigin(origins = "http://localhost:4200") // permite Angular local
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProdutoController {
 
     private final ProdutoService service;
@@ -18,6 +18,7 @@ public class ProdutoController {
         this.service = service;
     }
 
+    // CRUD original
     @PostMapping
     public ResponseEntity<Produto> adicionar(@RequestBody Produto p) {
         Produto criado = service.adicionar(p);
@@ -44,5 +45,26 @@ public class ProdutoController {
     public ResponseEntity<Void> reajustar(@PathVariable double percentual) {
         service.reajustarPrecos(percentual);
         return ResponseEntity.noContent().build();
+    }
+
+    // Novos endpoints para relatórios e integração
+    @GetMapping("/{id}")
+    public ResponseEntity<Produto> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(service.buscarPorId(id));
+    }
+
+    @GetMapping("/ordenados")
+    public ResponseEntity<List<Produto>> listarOrdenados() {
+        return ResponseEntity.ok(service.listarOrdenadoPorNome());
+    }
+
+    @GetMapping("/abaixo-minimo")
+    public ResponseEntity<List<Produto>> listarAbaixoMinimo() {
+        return ResponseEntity.ok(service.listarProdutosAbaixoDoMinimo());
+    }
+
+    @GetMapping("/por-categoria")
+    public ResponseEntity<List<Object[]>> contarPorCategoria() {
+        return ResponseEntity.ok(service.contarProdutosPorCategoria());
     }
 }
