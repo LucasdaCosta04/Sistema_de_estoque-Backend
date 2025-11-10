@@ -1,4 +1,4 @@
-package com.sistema.estoque.entity;
+package com.sistema.estoque.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
