@@ -28,7 +28,6 @@ public class ProdutoService {
     public Produto editar(Long id, Produto p) {
         Produto existente = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado"));
-        // aplicar validação no objeto que será salvo
         existente.setNome(p.getNome());
         existente.setPrecoUnitario(p.getPrecoUnitario());
         existente.setUnidade(p.getUnidade());
@@ -57,6 +56,23 @@ public class ProdutoService {
             p.setPrecoUnitario(novo);
         }
         repository.saveAll(produtos);
+    }
+
+    // 🔍 Consultas customizadas
+    public List<Produto> buscarPorNome(String nome) {
+        return repository.findByNomeContainingIgnoreCase(nome);
+    }
+
+    public List<Produto> buscarPorCategoria(String categoria) {
+        return repository.findByCategoriaIgnoreCase(categoria);
+    }
+
+    public List<Produto> buscarComEstoqueBaixo() {
+        return repository.findProdutosComEstoqueBaixo();
+    }
+
+    public List<Produto> buscarPorFaixaDePreco(Double min, Double max) {
+        return repository.findByPrecoUnitarioBetween(min, max);
     }
 
     private void validarProduto(Produto p) {
