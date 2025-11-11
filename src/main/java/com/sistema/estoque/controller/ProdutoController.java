@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/produtos")
-@CrossOrigin(origins = "http://localhost:4200") // permite Angular local
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProdutoController {
 
     private final ProdutoService service;
@@ -18,6 +18,7 @@ public class ProdutoController {
         this.service = service;
     }
 
+    // CRUD original
     @PostMapping
     public ResponseEntity<Produto> adicionar(@RequestBody Produto p) {
         Produto criado = service.adicionar(p);
