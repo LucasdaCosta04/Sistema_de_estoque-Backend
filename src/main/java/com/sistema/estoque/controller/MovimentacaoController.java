@@ -1,7 +1,7 @@
 package com.sistema.estoque.controller;
 
 import com.sistema.estoque.dto.MovimentacaoDTO;
-import com.sistema.estoque.model.Movimentacao;
+import com.sistema.estoque.entity.Movimentacao;
 import com.sistema.estoque.service.MovimentacaoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

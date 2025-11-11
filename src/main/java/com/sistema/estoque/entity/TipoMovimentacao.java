@@ -1,4 +1,4 @@
-package com.sistema.estoque.model;
+package com.sistema.estoque.entity;
 
 public enum TipoMovimentacao {
     ENTRADA,

@@ -1,6 +1,6 @@
 package com.sistema.estoque.service;
 
-import com.sistema.estoque.model.Produto;
+import com.sistema.estoque.entity.Produto;
 import com.sistema.estoque.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

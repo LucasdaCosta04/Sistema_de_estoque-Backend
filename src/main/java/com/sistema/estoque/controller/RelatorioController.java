@@ -1,9 +1,9 @@
 package com.sistema.estoque.controller;
 
-import com.sistema.estoque.model.Produto;
+import com.sistema.estoque.entity.Produto;
 import com.sistema.estoque.repository.MovimentacaoRepository;
 import com.sistema.estoque.repository.ProdutoRepository;
-import com.sistema.estoque.model.TipoMovimentacao;
+import com.sistema.estoque.entity.TipoMovimentacao;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

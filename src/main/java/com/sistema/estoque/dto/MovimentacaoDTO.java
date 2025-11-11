@@ -1,6 +1,6 @@
 package com.sistema.estoque.dto;
 
-import com.sistema.estoque.model.TipoMovimentacao;
+import com.sistema.estoque.entity.TipoMovimentacao;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 

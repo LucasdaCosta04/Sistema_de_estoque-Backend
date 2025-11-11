@@ -1,9 +1,9 @@
 package com.sistema.estoque.service;
 
 import com.sistema.estoque.dto.MovimentacaoDTO;
-import com.sistema.estoque.model.Movimentacao;
-import com.sistema.estoque.model.Produto;
-import com.sistema.estoque.model.TipoMovimentacao;
+import com.sistema.estoque.entity.Movimentacao;
+import com.sistema.estoque.entity.Produto;
+import com.sistema.estoque.entity.TipoMovimentacao;
 import com.sistema.estoque.repository.MovimentacaoRepository;
 import com.sistema.estoque.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;

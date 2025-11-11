@@ -1,6 +1,6 @@
 package com.sistema.estoque.repository;
 
-import com.sistema.estoque.model.Produto;
+import com.sistema.estoque.entity.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
