@@ -45,4 +45,27 @@ public class ProdutoController {
         service.reajustarPrecos(percentual);
         return ResponseEntity.noContent().build();
     }
+
+    // 🔍 Novos endpoints de busca
+    @GetMapping("/buscar/nome/{nome}")
+    public ResponseEntity<List<Produto>> buscarPorNome(@PathVariable String nome) {
+        return ResponseEntity.ok(service.buscarPorNome(nome));
+    }
+
+    @GetMapping("/buscar/categoria/{categoria}")
+    public ResponseEntity<List<Produto>> buscarPorCategoria(@PathVariable String categoria) {
+        return ResponseEntity.ok(service.buscarPorCategoria(categoria));
+    }
+
+    @GetMapping("/buscar/estoque-baixo")
+    public ResponseEntity<List<Produto>> buscarComEstoqueBaixo() {
+        return ResponseEntity.ok(service.buscarComEstoqueBaixo());
+    }
+
+    @GetMapping("/buscar/faixa-preco")
+    public ResponseEntity<List<Produto>> buscarPorFaixaDePreco(
+            @RequestParam Double min,
+            @RequestParam Double max) {
+        return ResponseEntity.ok(service.buscarPorFaixaDePreco(min, max));
+    }
 }
