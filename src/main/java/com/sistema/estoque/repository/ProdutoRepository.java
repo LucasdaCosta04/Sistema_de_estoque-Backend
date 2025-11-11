@@ -10,14 +10,16 @@ import java.util.List;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
-    // Para relatório de lista de preços
-    List<Produto> findByOrderByNomeAsc();
+    // 🔍 Buscar produtos cujo nome contenha parte do texto (case-insensitive)
+    List<Produto> findByNomeContainingIgnoreCase(String nome);
 
-    // Para relatório de produtos abaixo do mínimo
+    // 🏷️ Buscar produtos por categoria (case-insensitive)
+    List<Produto> findByCategoriaIgnoreCase(String categoria);
+
+    // ⚠️ Buscar produtos com estoque abaixo do mínimo
     @Query("SELECT p FROM Produto p WHERE p.quantidadeEstoque < p.quantidadeMinima")
-    List<Produto> findProdutosAbaixoDoMinimo();
+    List<Produto> findProdutosComEstoqueBaixo();
 
-    // Para relatório de produtos por categoria
-    @Query("SELECT p.categoria, COUNT(p) FROM Produto p GROUP BY p.categoria")
-    List<Object[]> countProdutosPorCategoria();
+    // 💲 Buscar produtos por faixa de preço
+    List<Produto> findByPrecoUnitarioBetween(Double min, Double max);
 }

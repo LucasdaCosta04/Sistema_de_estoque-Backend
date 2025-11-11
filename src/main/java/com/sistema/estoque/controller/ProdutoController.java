@@ -47,24 +47,26 @@ public class ProdutoController {
         return ResponseEntity.noContent().build();
     }
 
-    // Novos endpoints para relatórios e integração
-    @GetMapping("/{id}")
-    public ResponseEntity<Produto> buscarPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(service.buscarPorId(id));
+    // 🔍 Novos endpoints de busca
+    @GetMapping("/buscar/nome/{nome}")
+    public ResponseEntity<List<Produto>> buscarPorNome(@PathVariable String nome) {
+        return ResponseEntity.ok(service.buscarPorNome(nome));
     }
 
-    @GetMapping("/ordenados")
-    public ResponseEntity<List<Produto>> listarOrdenados() {
-        return ResponseEntity.ok(service.listarOrdenadoPorNome());
+    @GetMapping("/buscar/categoria/{categoria}")
+    public ResponseEntity<List<Produto>> buscarPorCategoria(@PathVariable String categoria) {
+        return ResponseEntity.ok(service.buscarPorCategoria(categoria));
     }
 
-    @GetMapping("/abaixo-minimo")
-    public ResponseEntity<List<Produto>> listarAbaixoMinimo() {
-        return ResponseEntity.ok(service.listarProdutosAbaixoDoMinimo());
+    @GetMapping("/buscar/estoque-baixo")
+    public ResponseEntity<List<Produto>> buscarComEstoqueBaixo() {
+        return ResponseEntity.ok(service.buscarComEstoqueBaixo());
     }
 
-    @GetMapping("/por-categoria")
-    public ResponseEntity<List<Object[]>> contarPorCategoria() {
-        return ResponseEntity.ok(service.contarProdutosPorCategoria());
+    @GetMapping("/buscar/faixa-preco")
+    public ResponseEntity<List<Produto>> buscarPorFaixaDePreco(
+            @RequestParam Double min,
+            @RequestParam Double max) {
+        return ResponseEntity.ok(service.buscarPorFaixaDePreco(min, max));
     }
 }
