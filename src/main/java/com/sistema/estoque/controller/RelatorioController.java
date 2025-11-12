@@ -24,9 +24,10 @@ public class RelatorioController {
         this.movimentacaoRepository = movimentacaoRepository;
     }
 
-    // Lista de Preços (usa mesmo endpoint do ProdutoController)
+    // Lista de Preços
     @GetMapping("/lista-precos")
     public ResponseEntity<List<Produto>> getListaPrecos() {
+        // ✅ CORRETO: usando o método que existe
         List<Produto> produtos = produtoRepository.findByOrderByNomeAsc();
         return ResponseEntity.ok(produtos);
     }
@@ -56,21 +57,23 @@ public class RelatorioController {
         return ResponseEntity.ok(resultado);
     }
 
-    // Produtos abaixo do mínimo (usa mesmo endpoint do ProdutoController)
+    // Produtos abaixo do mínimo
     @GetMapping("/estoque-minimo")
     public ResponseEntity<List<Produto>> getProdutosAbaixoMinimo() {
+        // ✅ CORRETO: usando o método que existe (alias)
         List<Produto> produtos = produtoRepository.findProdutosAbaixoDoMinimo();
         return ResponseEntity.ok(produtos);
     }
 
-    // Produtos por categoria (usa mesmo endpoint do ProdutoController)
+    // Produtos por categoria
     @GetMapping("/produtos-por-categoria")
     public ResponseEntity<List<Object[]>> getProdutosPorCategoria() {
+        // ✅ CORRETO: usando o método que existe
         List<Object[]> resultados = produtoRepository.countProdutosPorCategoria();
         return ResponseEntity.ok(resultados);
     }
 
-    // Produtos mais movimentados (exclusivo do RelatorioController)
+    // Produtos mais movimentados
     @GetMapping("/produtos-mais-movimentados")
     public ResponseEntity<Map<String, Object>> getProdutosMaisMovimentados() {
         List<Object[]> maisEntradas = movimentacaoRepository.findProdutoMaisMovimentadoPorTipo(TipoMovimentacao.ENTRADA);
