@@ -49,25 +49,45 @@ O sistema permite:
 
 ## 🧱 Estrutura do Projeto
 
-src/main/java/com/sistema/estoque
-├── controller/
-│ ├── ProdutoController.java
-│ ├── MovimentacaoController.java
-│ └── RelatorioController.java
-├── dto/
-│ └── MovimentacaoDTO.java
-├── entity/
-│ ├── Produto.java
-│ ├── Movimentacao.java
-│ └── TipoMovimentacao.java
-├── repository/
-│ ├── ProdutoRepository.java
-│ └── MovimentacaoRepository.java
-├── service/
-│ ├── ProdutoService.java
-│ └── MovimentacaoService.java
-└── SistemaDeEstoqueApplication.java
+src/
+└── main/
+├── java/
+│ └── com/
+│ └── sistema/
+│ └── estoque/
+│ ├── controller/
+│ │ ├── ProdutoController.java
+│ │ ├── MovimentacaoController.java
+│ │
+│ ├── dto/
+│ │ └── MovimentacaoDTO.java
+│ │
+│ ├── entity/
+│ │ ├── Produto.java
+│ │ ├── Movimentacao.java
+│ │ └── TipoMovimentacao.java
+│ │
+│ ├── repository/
+│ │ ├── ProdutoRepository.java
+│ │ └── MovimentacaoRepository.java
+│ │
+│ ├── service/
+│ │ ├── ProdutoService.java
+│ │ └── MovimentacaoService.java
+│ │
+│ └── SistemaDeEstoqueApplication.java
+│
+└── resources/
+├── static/
+├── templates/
+└── application.properties
 
+test/
+└── java/
+└── com/
+└── sistema/
+└── estoque/
+└── SistemaDeEstoqueApplicationTests.java
 
 ---
 
