@@ -22,4 +22,18 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
     // 💲 Buscar produtos por faixa de preço
     List<Produto> findByPrecoUnitarioBetween(Double min, Double max);
+
+    // ✅ ADICIONAR ESTES MÉTODOS PARA OS RELATÓRIOS:
+
+    // Para Relatório de Lista de Preços
+    List<Produto> findByOrderByNomeAsc();
+
+    // Para Relatório de Produtos Abaixo do Mínimo (alias para o método existente)
+    default List<Produto> findProdutosAbaixoDoMinimo() {
+        return findProdutosComEstoqueBaixo();
+    }
+
+    // Para Relatório de Produtos por Categoria
+    @Query("SELECT p.categoria, COUNT(p) FROM Produto p GROUP BY p.categoria")
+    List<Object[]> countProdutosPorCategoria();
 }
