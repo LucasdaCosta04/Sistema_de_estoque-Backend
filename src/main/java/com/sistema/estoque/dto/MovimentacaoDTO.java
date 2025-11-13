@@ -30,4 +30,5 @@ public class MovimentacaoDTO {
 
     @NotNull(message = "Tipo de movimentação é obrigatório")
     private TipoMovimentacao tipo;
+
 }
