@@ -39,8 +39,8 @@ O sistema permite:
 
 ## 🧩 Padrões de Projeto Aplicados
 
-- **MVC (Model–View–Controller):**  
-  Separação clara das camadas — `Entity`, `Controller`, `Service`, `Repository`.
+- **MVC (Model–View–Controller):
+Separação entre as camadas de controle, serviço e persistência (Controller, Service, Repository, Entity, DTO).
 
 - **Service Layer Pattern:**  
   Centraliza a lógica de negócio nas classes de serviço (`ProdutoService`, `MovimentacaoService`), deixando os controladores focados em lidar com as requisições HTTP.
@@ -50,44 +50,42 @@ O sistema permite:
 ## 🧱 Estrutura do Projeto
 
 src/
-└── main/
-├── java/
-│ └── com/
-│ └── sistema/
-│ └── estoque/
-│ ├── controller/
-│ │ ├── ProdutoController.java
-│ │ ├── MovimentacaoController.java
-│ │
-│ ├── dto/
-│ │ └── MovimentacaoDTO.java
-│ │
-│ ├── entity/
-│ │ ├── Produto.java
-│ │ ├── Movimentacao.java
-│ │ └── TipoMovimentacao.java
-│ │
-│ ├── repository/
-│ │ ├── ProdutoRepository.java
-│ │ └── MovimentacaoRepository.java
-│ │
-│ ├── service/
-│ │ ├── ProdutoService.java
-│ │ └── MovimentacaoService.java
-│ │
-│ └── SistemaDeEstoqueApplication.java
-│
-└── resources/
-├── static/
-├── templates/
-└── application.properties
+ └── main/
+     ├── java/
+     │   └── com/sistema/estoque/
+     │       ├── controller/
+     │       │   ├── ProdutoController.java
+     │       │   ├── MovimentacaoController.java
+     │       │   └── RelatorioController.java
+     │       │
+     │       ├── dto/
+     │       │   ├── ProdutoDTO.java
+     │       │   └── MovimentacaoDTO.java
+     │       │
+     │       ├── entity/
+     │       │   ├── Produto.java
+     │       │   ├── Movimentacao.java
+     │       │   └── TipoMovimentacao.java
+     │       │
+     │       ├── repository/
+     │       │   ├── ProdutoRepository.java
+     │       │   └── MovimentacaoRepository.java
+     │       │
+     │       ├── service/
+     │       │   ├── ProdutoService.java
+     │       │   └── MovimentacaoService.java
+     │       │
+     │       └── SistemaDeEstoqueApplication.java
+     │
+     └── resources/
+         ├── static/
+         ├── templates/
+         └── application.properties
 
-test/
-└── java/
-└── com/
-└── sistema/
-└── estoque/
-└── SistemaDeEstoqueApplicationTests.java
+ test/
+  └── java/com/sistema/estoque/
+      └── SistemaDeEstoqueApplicationTests.java
+
 
 ---
 
@@ -133,6 +131,16 @@ A aplicação é executada diretamente pelo IntelliJ IDEA:
 
 ---
 
+##🧭 Arquitetura do Sistema
+┌──────────────────┐      ┌────────────────┐      ┌──────────────────┐      ┌──────────────────┐
+│   Controller     │ ───> │    Service     │ ───> │   Repository     │ ───> │    Database      │
+└──────────────────┘      └────────────────┘      └──────────────────┘      └──────────────────┘
+        │
+        ▼
+     [DTO ↔ Entity]
+     
+---
+
 ## 🔗 Repositório
 
 Front-end:
@@ -140,9 +148,11 @@ Front-end:
 ---
 
 ## ✅ Status do Projeto
-
-✔️ CRUD completo para **Produto** e **Movimentação**  
-⚙️ Testado com sucesso via Postman  
-📦 Categoria: em desenvolvimento  
+Funcionalidade	Status
+CRUD de Produto	✅ Concluído
+CRUD de Movimentação	✅ Concluído
+DTOs e validações	✅ Implementados (ProdutoDTO, MovimentacaoDTO)
+Relatórios	✅ Funcionando
+Categoria	⚙️ Em desenvolvimento 
 
 ---
