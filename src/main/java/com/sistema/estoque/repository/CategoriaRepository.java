@@ -1,6 +1,6 @@
 package com.sistema.estoque.repository;
 
-import com.sistema.estoque.model.Categoria;
+import com.sistema.estoque.entity.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
