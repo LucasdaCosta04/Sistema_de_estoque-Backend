@@ -2,10 +2,7 @@ package com.sistema.estoque.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.Instant;
 import java.util.HashSet;
@@ -18,7 +15,9 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Categoria {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -31,7 +30,6 @@ public class Categoria {
     @Column(nullable = false)
     private Instant criadoEm = Instant.now();
 
-
     @OneToMany(
             mappedBy = "categoria",
             cascade = CascadeType.ALL,
@@ -39,7 +37,4 @@ public class Categoria {
             fetch = FetchType.LAZY
     )
     private Set<Produto> produtos = new HashSet<>();
-
-
-
 }
