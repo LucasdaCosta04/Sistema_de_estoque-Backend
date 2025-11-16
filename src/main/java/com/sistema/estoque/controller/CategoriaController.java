@@ -3,7 +3,9 @@ package com.sistema.estoque.controller;
 import com.sistema.estoque.dto.CategoriaCreateDTO;
 import com.sistema.estoque.dto.CategoriaResponseDTO;
 import com.sistema.estoque.service.CategoriaService;
+
 import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,18 +20,15 @@ public class CategoriaController {
 
     private final CategoriaService categoriaService;
 
-
     @Autowired
     public CategoriaController(CategoriaService categoriaService) {
         this.categoriaService = categoriaService;
     }
 
     @PostMapping
-    public ResponseEntity<CategoriaResponseDTO> criarCategoria(@Valid @RequestBody CategoriaCreateDTO createDTO) {
+    public ResponseEntity<CategoriaResponseDTO> criarCategoria(@Valid @RequestBody CategoriaCreateDTO dto) {
 
-
-        CategoriaResponseDTO novaCategoria = categoriaService.criarCategoria(createDTO);
-
+        CategoriaResponseDTO novaCategoria = categoriaService.criarCategoria(dto);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -42,30 +41,25 @@ public class CategoriaController {
 
     @GetMapping
     public ResponseEntity<List<CategoriaResponseDTO>> listarCategorias() {
-        List<CategoriaResponseDTO> categorias = categoriaService.listarTodas();
-
-        return ResponseEntity.ok(categorias);
+        return ResponseEntity.ok(categoriaService.listarTodas());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CategoriaResponseDTO> buscarCategoriaPorId(@PathVariable Long id) {
-        CategoriaResponseDTO categoria = categoriaService.buscarPorId(id);
-        return ResponseEntity.ok(categoria);
+        return ResponseEntity.ok(categoriaService.buscarPorId(id));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CategoriaResponseDTO> atualizarCategoria(
             @PathVariable Long id,
-            @Valid @RequestBody CategoriaCreateDTO updateDTO) {
+            @Valid @RequestBody CategoriaCreateDTO dto) {
 
-        CategoriaResponseDTO categoriaAtualizada = categoriaService.atualizarCategoria(id, updateDTO);
-        return ResponseEntity.ok(categoriaAtualizada);
+        return ResponseEntity.ok(categoriaService.atualizarCategoria(id, dto));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarCategoria(@PathVariable Long id) {
         categoriaService.deletarCategoria(id);
-        // Boa prática: DELETE retorna 204 No Content (sem conteúdo no corpo)
         return ResponseEntity.noContent().build();
     }
 }
