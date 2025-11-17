@@ -40,7 +40,7 @@ O sistema permite:
 ## 🧩 Padrões de Projeto Aplicados
 
 - **MVC (Model–View–Controller):
-Separação entre as camadas de controle, serviço e persistência (Controller, Service, Repository, Entity, DTO).
+Separação entre as camadas de controle, serviço e persistência (Controller, Service, Repository, Entity, Exception, DTO).
 
 - **Service Layer Pattern:**  
   Centraliza a lógica de negócio nas classes de serviço (`ProdutoService`, `MovimentacaoService`), deixando os controladores focados em lidar com as requisições HTTP.
@@ -142,9 +142,9 @@ A aplicação é executada diretamente pelo IntelliJ IDEA:
 ---
 
 ##🧭 Arquitetura do Sistema
-┌──────────────────┐      ┌────────────────┐      ┌──────────────────┐      ┌──────────────────┐
-│   Controller     │ ───> │    Service     │ ───> │   Repository     │ ───> │    Database      │
-└──────────────────┘      └────────────────┘      └──────────────────┘      └──────────────────┘
+┌──────────────────┐      ┌────────────────┐      ┌──────────────────┐     ┌──────────────────┐      ┌──────────────────┐
+│   Controller     │ ───> │    Service     │ ───> │   Repository     │───> │    Exception     │ ───> │    Database      │
+└──────────────────┘      └────────────────┘      └──────────────────┘     └──────────────────┘      └──────────────────┘
         │
         ▼
      [DTO ↔ Entity]
@@ -161,6 +161,7 @@ Front-end:
 Funcionalidade	Status
 CRUD de Produto	✅ Concluído
 CRUD de Movimentação	✅ Concluído
+CRUD de categoria ✅ Concluído
 DTOs e validações	✅ Implementados (ProdutoDTO, MovimentacaoDTO)
 Relatórios	✅ Funcionando
 Categoria	⚙️ Em desenvolvimento 
