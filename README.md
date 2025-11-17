@@ -57,23 +57,33 @@ src/
      │       │   ├── ProdutoController.java
      │       │   ├── MovimentacaoController.java
      │       │   └── RelatorioController.java
+     │       │   └── CategoriaController.java
      │       │
      │       ├── dto/
      │       │   ├── ProdutoDTO.java
      │       │   └── MovimentacaoDTO.java
+     │       │    └── CategoriaCreateDTO.java
+     │       │    └── CategoriaResponseDTO.java
      │       │
      │       ├── entity/
      │       │   ├── Produto.java
      │       │   ├── Movimentacao.java
      │       │   └── TipoMovimentacao.java
+     │       │   └── Categoria.java
+     │       │
+     │       ├── Exception/
+     │       │   └── BusinessException.java
+     │       │   └── ResourceNotFoundExeption.java
      │       │
      │       ├── repository/
      │       │   ├── ProdutoRepository.java
      │       │   └── MovimentacaoRepository.java
+     │       │   └── CategoriaRepository.java
      │       │
      │       ├── service/
      │       │   ├── ProdutoService.java
      │       │   └── MovimentacaoService.java
+     │       │   └── CategoriaService.java
      │       │
      │       └── SistemaDeEstoqueApplication.java
      │
