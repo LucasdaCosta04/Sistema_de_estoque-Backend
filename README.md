@@ -138,17 +138,19 @@ Java 17 e Spring Boot 3.3.1.
 
 ---
 
-#🚀 Execução do Projeto
-##1️⃣ Clonar o repositório
+# 🚀 Execução do Projeto
 
+## 1️⃣ Clonar o repositório
+
+```bash
 git clone https://github.com/seu-usuario/estoque-backend.git
 cd estoque-backend
-
-##2️⃣ Criar o banco de dados MySQL
+```
+## 2️⃣ Criar o banco de dados MySQL
 
 CREATE DATABASE sistema_estoque;
 
-##3️⃣ Configurar o application.properties
+## 3️⃣ Configurar application.properties
 
 spring.datasource.url=jdbc:mysql://localhost:3306/sistema_estoque
 spring.datasource.username=root
@@ -157,13 +159,17 @@ spring.datasource.password=senha
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 
-##4️⃣ Executar
+## 4️⃣ Executar o servidor
 
-Terminal: mvn spring-boot:run
+✔ Via IDE
 
-Ou pela IDE executando:SistemaDeEstoqueApplication
+Executar a classe principal:SistemaDeEstoqueApplication
 
-Servidor será iniciado em:http://localhost:8080
+## 🌐 Endereço da aplicação
+
+http://localhost:8080
+
+---
 
 # 🔌 Endpoints REST Disponíveis
 
