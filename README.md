@@ -266,8 +266,8 @@ SELECT * FROM produto;
 
 | Parte | Link |
 |---|---|
-| Back-End | _inserir link_ |
-| Front-End | _inserir link_ |
+| Back-End | https://github.com/LucasdaCosta04/Sistema_de_estoque-Backend.git |
+| Front-End | . |
 
 ---
 
