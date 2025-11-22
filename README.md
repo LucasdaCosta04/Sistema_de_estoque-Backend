@@ -72,7 +72,7 @@ A aplicação opera como serviço remoto, sendo consumida por uma aplicação Fr
 ---
 
 # 📁 Estrutura do Projeto
-
+```
 src/
 └── main/
 ├── java/
@@ -119,7 +119,7 @@ src/
 test/
 └── java/com/sistema/estoque/
 └── SistemaDeEstoqueApplicationTests.java
-
+```
 ---
 
 # 📦 Dependências (pom.xml)
