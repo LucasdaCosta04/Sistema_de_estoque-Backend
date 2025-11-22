@@ -7,33 +7,72 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repositório responsável pelo acesso e manipulação de dados da entidade Produto
+ * no banco utilizando Spring Data JPA. Inclui consultas derivadas e consultas
+ * específicas via JPQL para suporte às funcionalidades do sistema de estoque.
+ */
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
-    // 🔍 Buscar produtos cujo nome contenha parte do texto (case-insensitive)
+    /**
+     * Busca produtos cujo nome contenha o texto informado, ignorando diferenças de caixa.
+     *
+     * @param nome trecho a ser pesquisado no nome do produto
+     * @return lista de produtos que contenham o trecho informado
+     */
     List<Produto> findByNomeContainingIgnoreCase(String nome);
 
-    // 🏷️ Buscar produtos por categoria (case-insensitive)
+    /**
+     * Busca produtos por categoria ignorando diferenças entre maiúsculas e minúsculas.
+     *
+     * @param categoria nome da categoria
+     * @return lista de produtos pertencentes à categoria informada
+     */
     List<Produto> findByCategoriaIgnoreCase(String categoria);
 
-    // ⚠️ Buscar produtos com estoque abaixo do mínimo
+    /**
+     * Retorna produtos cujo estoque atual esteja abaixo da quantidade mínima definida.
+     *
+     * @return lista de produtos com estoque inferior ao mínimo
+     */
     @Query("SELECT p FROM Produto p WHERE p.quantidadeEstoque < p.quantidadeMinima")
     List<Produto> findProdutosComEstoqueBaixo();
 
-    // 💲 Buscar produtos por faixa de preço
+    /**
+     * Busca produtos filtrando por uma faixa de preço mínima e máxima.
+     *
+     * @param min valor mínimo do preço unitário
+     * @param max valor máximo do preço unitário
+     * @return lista de produtos dentro da faixa de preço definida
+     */
     List<Produto> findByPrecoUnitarioBetween(Double min, Double max);
 
-    // ✅ ADICIONAR ESTES MÉTODOS PARA OS RELATÓRIOS:
-
-    // Para Relatório de Lista de Preços
+    /**
+     * Retorna todos os produtos ordenados alfabeticamente pelo nome.
+     * Utilizado em relatórios de listagem de preços.
+     *
+     * @return lista de produtos ordenados pelo nome em ordem crescente
+     */
     List<Produto> findByOrderByNomeAsc();
 
-    // Para Relatório de Produtos Abaixo do Mínimo (alias para o método existente)
+    /**
+     * Alias para {@link #findProdutosComEstoqueBaixo()} para fins de relatórios.
+     *
+     * @return lista de produtos com estoque abaixo do mínimo
+     */
     default List<Produto> findProdutosAbaixoDoMinimo() {
         return findProdutosComEstoqueBaixo();
     }
 
-    // Para Relatório de Produtos por Categoria
+    /**
+     * Retorna a quantidade de produtos agrupados por categoria.
+     * O resultado retornado é uma lista de arrays contendo:
+     * [0] nome da categoria (String)
+     * [1] quantidade de produtos (Long)
+     *
+     * @return lista contendo categoria e respectiva quantidade total
+     */
     @Query("SELECT p.categoria, COUNT(p) FROM Produto p GROUP BY p.categoria")
     List<Object[]> countProdutosPorCategoria();
 }
