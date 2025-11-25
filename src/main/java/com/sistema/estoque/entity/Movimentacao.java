@@ -8,7 +8,6 @@ import java.time.LocalDate;
 
 /**
  * Entidade JPA que representa uma movimentação de estoque no sistema
- *
  * Mapeia a tabela "movimentacao" no banco de dados e registra todas as
  * operações de entrada e saída de produtos do estoque
  */
