@@ -8,6 +8,15 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Entidade que representa uma categoria de produtos no sistema de estoque.
+ *
+ * Cada categoria pode conter vários produtos, e é utilizada como forma de
+ * classificação e organização dentro da aplicação.
+ *
+ * A entidade é persistida na tabela "categorias" e possui uma restrição
+ * de unicidade no campo "nome".
+ */
 @Entity
 @Table(name = "categorias", uniqueConstraints = @UniqueConstraint(columnNames = "nome"))
 @Getter
@@ -16,25 +25,12 @@ import java.util.Set;
 @AllArgsConstructor
 public class Categoria {
 
+    /**
+     * Identificador único da categoria.
+     * Gerado automaticamente pelo banco de dados.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank
-    @Column(nullable = false, length = 100, unique = true)
-    private String nome;
-
-    @Column(length = 250)
-    private String descricao;
-
-    @Column(nullable = false)
-    private Instant criadoEm = Instant.now();
-
-    @OneToMany(
-            mappedBy = "categoria",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.LAZY
-    )
-    private Set<Produto> produtos = new HashSet<>();
 }
+
