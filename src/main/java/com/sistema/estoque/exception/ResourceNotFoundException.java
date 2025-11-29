@@ -1,26 +1,31 @@
 package com.sistema.estoque.exception;
 
 /**
- * Exceção lançada quando um recurso solicitado não é encontrado na aplicação.
- * É utilizada para representar falhas previstas, normalmente associadas a
- * buscas em repositórios que não retornam resultados.
+ * Exceção personalizada utilizada quando um recurso solicitado
+ * (categoria, produto, movimentação etc.) não é encontrado no sistema.
+ *
+ * Essa exceção é normalmente lançada pela camada Service
+ * quando um ID informado não corresponde a nenhum registro no banco.
+ *
+ * É capturada pelo ExceptionHandler global para retornar um
+ * HTTP 404 (Not Found) de forma padronizada.
  */
 public class ResourceNotFoundException extends RuntimeException {
 
     /**
-     * Cria uma nova ResourceNotFoundException com uma mensagem descritiva.
+     * Construtor simples que recebe somente a mensagem de erro.
      *
-     * @param message mensagem explicando o motivo da exceção
+     * @param message descrição detalhada do erro
      */
     public ResourceNotFoundException(String message) {
         super(message);
     }
 
     /**
-     * Cria uma nova ResourceNotFoundException com mensagem e causa original.
+     * Construtor que recebe mensagem e causa original.
      *
-     * @param message mensagem explicando o motivo da exceção
-     * @param cause exceção original que provocou o erro
+     * @param message descrição detalhada do erro
+     * @param cause exceção original que ocasionou o problema
      */
     public ResourceNotFoundException(String message, Throwable cause) {
         super(message, cause);
